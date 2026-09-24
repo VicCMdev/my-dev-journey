@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  date_range: string;
+  description: string;
+  isWorkExperience: boolean;
+}
+
+const { title, date_range, description, isWorkExperience } = Astro.props;
+---
+
+<div class=`card ${isWorkExperience ? "work-card" : "education-card" }`>
+  <h3>{title}</h3>
+  <p class="date-range">{date_range}</p>
+  <p class="description">{description}</p>
+</div>
+
+<style>
+  h3 {
+    display: block;
+    font-size: 1.17rem;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline: 0;
+    font-weight: bold;
+    unicode-bidi: isolate;
+  }
+
+  .date-range {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    margin: 0.25rem 0.75rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    text-align: justify;
+  }
+
+  .card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 1rem 2rem -20px rgba(0, 0, 0, 0.6);
+  }
+
+  .work-card {
+    border-radius: 1rem;
+    border-left: 3px solid var(--color-accent);
+  }
+
+
+</style>

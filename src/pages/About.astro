@@ -1,0 +1,139 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header.astro";
+import ProfileLayout from "../layouts/ProfileLayout.astro";
+import Card from "../components/Cards/Card.astro";
+---
+
+<ProfileLayout>
+    <div class="container">
+      <h1 class="section-title">About Me</h1>
+
+      <section class="about-intro">
+        <div class="about-intro-text">
+          <p>
+            As an Associate Software Engineer, I'm driven by the challenge of
+            turning ideas into real, impactful and innovative digital products.
+            I enjoy working on projects that push my creativity and technical
+            skills, and I thrive in environments where I can collaborate closely
+            with other professionals.
+          </p>
+          <p>
+            I'm committed to continuous learning, staying up to date with
+            emerging development trends so I can contribute modern, efficient,
+            and scalable solutions.
+          </p>
+        </div>
+        <div class="about-intro-photo">
+          <img
+            alt="personal photo"
+            src="images/personale_image.jpeg"
+            class="photo-placeholder"
+          />
+        </div>
+      </section>
+      <section class="about-section">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+          <Card
+            title="Associate Software Engineer"
+            date_range="Thomson Reuters · January 2025 – Present"
+            description="As an Associate Software Engineer, I have contributed to the development and maintenance of a legal catalog management platform within an agile software development environment. My key responsibilities encompassed full-cycle participation in critical development processes, including code implementation, quality assurance testing, debugging, and peer code reviews. This hands-on involvement strengthened my ability to collaborate effectively within cross-functional teams while independently addressing technical challenges and ensuring code quality standards."
+            isWorkExperience={true}
+          />
+          <Card
+            title="Software Development Intern"
+            date_range="Thomson Reuters · July 2024 – December 2024"
+            description="During my internship, I executed technical tasks contributing to the development and maintenance of a legal catalog management platform. Working under the mentorship of senior developers, I applied academic knowledge to real-world coding practices and industry standards. I also led a research initiative evaluating solutions for migrating and upgrading repository management tools. This involved analyzing complex architectures, including monorepo structures and large-scale codebases, and presenting findings to the development committee for approval."
+            isWorkExperience={true}
+          />
+          <Card
+            title="Web Developer Intern"
+            date_range="Gestoria Empresarial Global Service · August 2023 – March 2024"
+            description="I participated in the development of a web application for the management of the repair process of optical reader devices used for the delivery of mail in Mexico. Tech Stack: Laravel 9, Vue.js 3, Node 20, Git, HTML, CSS"
+            isWorkExperience={true}
+          />
+        </div>
+      </section>
+      <section class="about-section">
+        <h2>Education & Certifications</h2>
+        <div class="education-container">
+          <Card
+            title="Computer Systems Engineering"
+            date_range="Escuela Superior de Computo (IPN) · 2019 – 2024"
+            description="Comprehensive and theoretical training that integrates advanced programming, systems architecture, mathematical analysis, information security, and project management. The curriculum emphasizes the design of scalable and sustainable solutions at the enterprise level, preparing professionals for complex technological challenges and strategic decision-making roles."
+            isWorkExperience={false}
+          />
+          <Card
+            title="Technical Diploma in Computer Programming"
+            date_range="CECyT N9 (IPN) · 2016 – 2019"
+            description="Practical training oriented towards software development, programming logic, and current technologies. Students acquire proficiency in languages such as Java, Python, JavaScript, and SQL, with emphasis on real-world projects and immediate problem-solving approaches."
+            isWorkExperience={false}
+          />
+        </div>
+      </section>
+    </div>
+</ProfileLayout>
+
+<style>
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-intro {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-intro-text {
+    flex: 1 1 60%;
+  }
+
+  .about-intro-text p {
+    color: var(--color-text-muted);
+  }
+
+  .about-intro-photo {
+    flex: 0 0 200px;
+  }
+
+  .photo-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 1px dashed var(--color-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    background: var(--color-bg-alt);
+    object-fit: cover;
+  }
+
+  .about-section {
+    margin-bottom: 3rem;
+  }
+
+  .about-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .education-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

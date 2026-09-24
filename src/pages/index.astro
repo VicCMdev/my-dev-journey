@@ -1,0 +1,274 @@
+---
+import ProfileLayout from "../layouts/ProfileLayout.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<ProfileLayout>
+    <section class="container who-am-i">
+      <h1>Hi!, I'm Victor Ceja.</h1>
+      <div class="code-window">
+        <div class="code-window-titlebar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="code-window-path">
+            ~/victor-ceja/profile.ts — Visual Studio Code
+          </div>
+          <div class="code-window-spacer" aria-hidden="true"></div>
+        </div>
+        <div class="code-window-pane">
+          <div class="code">
+            <div class="line cmt">/**</div>
+            <div class="line cmt">
+              * A Junior Software Engineer, driven by the challenge
+            </div>
+            <div class="line cmt">
+              * of turning ideas into real, impactful and innovative
+            </div>
+            <div class="line cmt">
+              * digital products. I enjoy working on projects that push
+            </div>
+            <div class="line cmt">
+              * my creativity and technical skills, and I thrive in
+            </div>
+            <div class="line cmt">
+              * environments where I can collaborate closely with other
+            </div>
+            <div class="line cmt">* professionals.</div>
+            <div class="line cmt blank">&nbsp;*</div>
+            <div class="line cmt">
+              * I'm committed to continuous learning, staying up to date
+            </div>
+            <div class="line cmt">
+              * with emerging development trends so I can contribute
+            </div>
+            <div class="line cmt">
+              * modern, efficient, and scalable solutions.
+            </div>
+            <div class="line cmt">*/</div>
+            <div class="line">
+              <span class="kw">export const</span>
+              <span class="prop">&nbsp;developer</span>
+              <span class="pun">=</span>
+              <span class="pun">{}</span>
+              <div class="line">
+                &nbsp;&nbsp;<span class="prop">name</span><span class="pun"
+                  >:</span
+                >
+                <span class="str">"Victor Ceja"</span><span class="pun">,</span>
+              </div>
+              <div class="line">
+                &nbsp;&nbsp;<span class="prop">role</span><span class="pun"
+                  >:</span
+                >
+                <span class="str">"Frontend Developer"</span><span class="pun"
+                  >,</span
+                >
+              </div>
+              <div class="line">
+                &nbsp;&nbsp;<span class="prop">stack</span><span class="pun"
+                  >:</span
+                >
+                <span class="str"
+                  >["Javascript", "Typescript", "React", "Node.js", "Express"]</span
+                ><span class="pun">,</span>
+              </div>
+              <div class="line"><span class="pun"></span>;</div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <a class="button" href="projects.html">View my work</a>
+        </div>
+      </div>
+    </section>
+</ProfileLayout>
+
+<style>
+  .who-am-i {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .code-window {
+    max-width: 860px;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -20px rgba(0, 0, 0, 0.55),
+      0 2px 0 rgba(255, 255, 255, 0.02) inset;
+  }
+
+  .code-window-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .code-window .dots {
+    display: flex;
+    gap: 7px;
+  }
+
+  .code-window .dots span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .code-window .dots span:nth-child(1) {
+    background: #ec6a5e;
+    opacity: 0.85;
+  }
+  .code-window .dots span:nth-child(2) {
+    background: #f4bf4f;
+    opacity: 0.85;
+  }
+  .code-window .dots span:nth-child(3) {
+    background: #61c554;
+    opacity: 0.85;
+  }
+
+  .code-window-path {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .code-window-spacer {
+    width: 46px;
+  }
+
+  .code-window-pane {
+    padding: 20px;
+  }
+
+  .code {
+    counter-reset: line;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 16px 0;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.75;
+    overflow-x: auto;
+  }
+
+  .code .line {
+    counter-increment: line;
+    padding: 0 18px 0 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .code .line::before {
+    content: counter(line);
+    display: inline-block;
+    width: 2.4em;
+    margin-right: 1.1em;
+    text-align: right;
+    color: var(--color-text-muted);
+    opacity: 0.55;
+    user-select: none;
+  }
+
+  .code .line.blank::before {
+    opacity: 0.3;
+  }
+
+  .code .kw {
+    color: var(--code-accent);
+  }
+  .code .str {
+    color: var(--code-accent-2);
+  }
+  .code .prop {
+    color: var(--color-text);
+  }
+  .code .pun {
+    color: var(--color-text-muted);
+  }
+  .code .cmt {
+    color: var(--code-comment);
+    font-style: italic;
+  }
+
+  @media (max-width: 560px) {
+    .code-window-pane {
+      padding: 16px 12px;
+    }
+    .code-window-path {
+      font-size: 11px;
+    }
+    .code {
+      font-size: 12.5px;
+    }
+    .code .line::before {
+      width: 1.8em;
+      margin-right: 0.8em;
+    }
+  }
+
+  .hero {
+    padding: 3rem 0 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p.tagline {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 40rem;
+  }
+
+  .button {
+    display: inline-block;
+    margin-left: 4.5rem;
+    margin-top: 1.5rem;
+    padding: 0.65rem 1.4rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: end;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .button:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPath =
+      window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".site-header nav a").forEach((link) => {
+      const linkPath = link.getAttribute("href");
+      if (linkPath === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
