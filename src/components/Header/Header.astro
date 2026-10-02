@@ -1,12 +1,16 @@
+---
+import Feature from "../Feature/Feature.astro";
+---
+
 <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html"><span id="logo-typed" data-text="Victor Ceja"></span><span class="logo-cursor" aria-hidden="true"></span></a>
+      <a class="logo" href="/home"><span id="logo-typed" data-text="Victor Ceja"></span><span class="logo-cursor" aria-hidden="true"></span></a>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="About.html">About Me</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/About">About Me</a></li>
+          <Feature feature="projects"> <li><a href="/projects">Projects</a></li></Feature>
+          <Feature feature="contact"> <li><a href="/contact">Contact</a></li></Feature>
         </ul>
       </nav>
     </div>
