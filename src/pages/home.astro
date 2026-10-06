@@ -1,6 +1,6 @@
 ---
 import ProfileLayout from "../layouts/ProfileLayout.astro";
-
+import About from "../components/About/About.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
@@ -35,7 +35,7 @@ import ProfileLayout from "../layouts/ProfileLayout.astro";
               * environments where I can collaborate closely with other
             </div>
             <div class="line cmt">* professionals.</div>
-            <div class="line cmt blank">&nbsp;*</div>
+            <div class="line cmt blank">*</div>
             <div class="line cmt">
               * I'm committed to continuous learning, staying up to date
             </div>
@@ -48,7 +48,7 @@ import ProfileLayout from "../layouts/ProfileLayout.astro";
             <div class="line cmt">*/</div>
             <div class="line">
               <span class="kw">export const</span>
-              <span class="prop">&nbsp;developer</span>
+              <span class="prop">&nbsp;developer&nbsp;</span>
               <span class="pun">=</span>
               <span class="pun">{}</span>
               <div class="line">
@@ -82,11 +82,13 @@ import ProfileLayout from "../layouts/ProfileLayout.astro";
         </div>
       </div>
     </section>
+
+    <About />
 </ProfileLayout>
 
 <style>
   .who-am-i {
-    padding-bottom: 1rem;
+    padding-bottom: 6rem;
     border-bottom: 1px solid var(--color-border);
   }
 
