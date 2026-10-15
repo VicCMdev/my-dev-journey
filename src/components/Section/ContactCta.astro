@@ -1,14 +1,16 @@
 ---
 import { isFlagEnabled } from "../../config/flags";
 import { profile } from "../../data/profile";
+import { getSectionIndex } from "../../util/sectionCounter";
 
 const href = isFlagEnabled("contact") ? "/contact" : `mailto:${profile.email}`;
+const contactIndex = getSectionIndex("contact") ?? "03";
 ---
 
 <section class="cta" aria-labelledby="cta-title">
   <div class="container cta-inner">
     <div>
-      <p class="eyebrow"><span>// 04</span> Next step</p>
+      <p class="eyebrow"><span>// {contactIndex}</span> Next step</p>
       <h2 id="cta-title">Have a project or a role in mind?</h2>
       <p class="lead">Let's talk about how I can help. I usually reply within 24 hours.</p>
     </div>

@@ -2,8 +2,10 @@
 import ProfileLayout from "@layouts/ProfileLayout.astro";
 import SectionHeading from "@components/Section/SectionHeading.astro";
 import { profile } from "../data/profile";
+import { getSectionIndex } from "../util/sectionCounter";
 
 const key = import.meta.env.PUBLIC_FORM_KEY;
+const contactIndex = getSectionIndex("contact") ?? "03";
 ---
 
 <ProfileLayout
@@ -13,7 +15,7 @@ const key = import.meta.env.PUBLIC_FORM_KEY;
   <section class="contact" aria-labelledby="contact-title">
     <div class="container contact-grid">
       <div class="intro">
-        <SectionHeading index="04" title="Let's build something." id="contact-title" />
+        <SectionHeading index={contactIndex} title="Let's build something." id="contact-title" />
         <p class="lead">
           Have a project, a role, or an idea in mind? Tell me a bit about it and
           I'll get back to you — usually within 24 hours.

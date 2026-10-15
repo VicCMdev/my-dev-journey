@@ -2,11 +2,14 @@
 import CodeWindow from "@components/CodeWindow/CodeWindow.astro";
 import SectionHeading from "@components/Section/SectionHeading.astro";
 import { profile } from "../../data/profile";
+import { getSectionIndex } from "../../util/sectionCounter";
+
+const aboutIndex = getSectionIndex("about") ?? "01";
 ---
 
 <section class="about" id="about" aria-labelledby="about-title">
   <div class="container">
-    <SectionHeading index="01" title="About me" id="about-title" />
+    <SectionHeading index={aboutIndex} title="About me" id="about-title" />
     <div class="about-grid">
       <div class="about-text">
         {profile.about.map((p, i) => <p class:list={{ first: i === 0 }}>{p}</p>)}

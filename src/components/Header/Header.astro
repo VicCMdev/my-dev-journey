@@ -1,9 +1,10 @@
 ---
-import Feature from "@components/Feature/Feature.astro";
 import { isFlagEnabled } from "../../config/flags";
+import { getNavSections } from "../../util/sectionCounter";
 
 const path = Astro.url.pathname.replace(/\/$/, "");
 const contactEnabled = isFlagEnabled("contact");
+const navSections = getNavSections();
 ---
 
 <header class="site-header">
@@ -15,22 +16,15 @@ const contactEnabled = isFlagEnabled("contact");
     </a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="/home#about"><span>01.</span> About</a></li>
-        <li><a href="/home#experience"><span>02.</span> Experience</a></li>
-        <Feature feature="projects">
-          <li>
-            <a href="/projects" aria-current={path === "/projects" ? "page" : undefined}
-              ><span>03.</span> Projects</a
-            >
-          </li>
-        </Feature>
-        <Feature feature="contact">
-          <li>
-            <a href="/contact" aria-current={path === "/contact" ? "page" : undefined}
-              ><span>04.</span> Contact</a
-            >
-          </li>
-        </Feature>
+        {
+          navSections.map((section) => (
+            <li>
+              <a href={section.href} aria-current={path === section.href ? "page" : undefined}>
+                <span>{`${section.index}.`}</span> {section.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       {
         contactEnabled && (

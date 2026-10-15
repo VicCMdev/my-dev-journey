@@ -3,11 +3,14 @@ import EducationCard from "@components/Cards/EducationCard.astro";
 import ExperienceCard from "@components/Cards/ExperienceCard.astro";
 import SectionHeading from "@components/Section/SectionHeading.astro";
 import { education, experience } from "../../data/profile";
+import { getSectionIndex } from "../../util/sectionCounter";
+
+const experienceIndex = getSectionIndex("experience") ?? "02";
 ---
 
 <section class="experience" id="experience" aria-labelledby="experience-title">
   <div class="container">
-    <SectionHeading index="02" title="Experience" id="experience-title" />
+      <SectionHeading index={experienceIndex} title="Experience" id="experience-title" />
     <div class="jobs">
       {experience.map((item, index) => <ExperienceCard item={item} index={index} />)}
     </div>

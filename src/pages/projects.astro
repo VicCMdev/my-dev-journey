@@ -1,6 +1,9 @@
 ---
 import ProfileLayout from "@layouts/ProfileLayout.astro";
 import SectionHeading from "@components/Section/SectionHeading.astro";
+import { getSectionIndex } from "../util/sectionCounter";
+
+const projectsIndex = getSectionIndex("projects") ?? "03";
 
 // Placeholder content — replace with real projects before enabling the "projects" flag.
 const projects = [
@@ -13,7 +16,7 @@ const projects = [
 <ProfileLayout title="Projects — Victor Ceja">
   <section class="projects" aria-labelledby="projects-title">
     <div class="container">
-      <SectionHeading index="03" title="Selected work" id="projects-title" />
+      <SectionHeading index={projectsIndex} title="Selected work" id="projects-title" />
       <div class="card-grid">
         {
           projects.map((p, i) => (
