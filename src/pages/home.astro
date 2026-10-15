@@ -2,15 +2,14 @@
 import ProfileLayout from "@layouts/ProfileLayout.astro";
 import About from "@components/About/About.astro";
 import CodeWindow from "@components/CodeWindow/CodeWindow.astro";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Feature from "@components/Feature/Feature.astro";
 ---
 
 <ProfileLayout>
     <section class="container who-am-i">
       <h1>Hi!, I'm Victor Ceja.</h1>
       <CodeWindow>
-        <a class="button" href="projects.html">View my work</a>
+        <Feature feature="projects"> <a class="button" href="projects.html">See my work</a></Feature>
       </CodeWindow>
     </section>
 
