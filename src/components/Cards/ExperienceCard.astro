@@ -1,0 +1,167 @@
+---
+import type { Experience } from "../../data/profile";
+
+interface Props {
+  item: Experience;
+  index: number;
+}
+
+const { item, index } = Astro.props;
+const number = String(index + 1).padStart(2, "0");
+---
+
+<article class:list={["experience-card", { current: item.current }]}>
+  <div class="when">
+    <span class="number" aria-hidden="true">{number}</span>
+    <p class="period">{item.period}</p>
+    {
+      item.current && (
+        <p class="now">
+          <span class="dot" aria-hidden="true" />
+          Current role
+        </p>
+      )
+    }
+  </div>
+
+  <div class="body">
+    <h3>{item.role}</h3>
+    <p class="company">{item.company}</p>
+    <ul class="highlights">
+      {item.highlights.map((h) => <li>{h}</li>)}
+    </ul>
+    <ul class="stack" aria-label="Technologies">
+      {item.stack.map((s) => <li class="chip">{s}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .experience-card {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  .experience-card:hover,
+  .experience-card:focus-within,
+  .experience-card.current {
+    border-color: var(--color-accent);
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-border-strong);
+    transition: color 0.18s ease;
+  }
+
+  .experience-card:hover .number,
+  .current .number {
+    color: var(--color-accent);
+  }
+
+  .period {
+    margin: 0.75rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .now {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.75rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: 700;
+  }
+
+  .company {
+    margin: 0.35rem 0 0;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .highlights {
+    margin: 1.1rem 0 1.4rem;
+    padding: 0;
+    list-style: none;
+    max-width: 62ch;
+  }
+
+  .highlights li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.45rem;
+    color: var(--color-text-muted);
+  }
+
+  .highlights li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 720px) {
+    .experience-card {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .when {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 1rem;
+    }
+
+    .number {
+      font-size: 2rem;
+    }
+
+    .period,
+    .now {
+      margin: 0;
+    }
+  }
+</style>

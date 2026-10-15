@@ -4,11 +4,11 @@ import { buildLines, DEFAULT_COLUMNS } from "./codeLines";
 const lines = buildLines(DEFAULT_COLUMNS);
 ---
 
-<div class="code-window">
+<div class="code-window" role="img" aria-label="Code snippet describing Victor Ceja as a developer object">
   <div class="code-window-titlebar">
     <div class="dots"><span></span><span></span><span></span></div>
     <div class="code-window-path">
-      ~/victor-ceja/profile.ts — Visual Studio Code
+      ~/victor-ceja/profile.ts
     </div>
     <div class="code-window-spacer" aria-hidden="true"></div>
   </div>
@@ -25,21 +25,23 @@ const lines = buildLines(DEFAULT_COLUMNS);
       }
     </div>
   </div>
-  <div class="button-container">
-    <slot />
-  </div>
+  {
+    Astro.slots.has("default") && (
+      <div class="button-container">
+        <slot />
+      </div>
+    )
+  }
 </div>
 
 <style>
   .code-window {
-    max-width: 860px;
+    width: 100%;
+    min-width: 0;
     background: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border: 2px solid var(--color-border-strong);
     overflow: hidden;
-    box-shadow:
-      0 30px 60px -20px rgba(0, 0, 0, 0.55),
-      0 2px 0 rgba(255, 255, 255, 0.02) inset;
+    box-shadow: 10px 10px 0 var(--color-bg-raised);
   }
 
   .code-window-titlebar {
@@ -92,14 +94,13 @@ const lines = buildLines(DEFAULT_COLUMNS);
   }
 
   .code-window-pane {
-    padding: 20px;
+    padding: 16px;
   }
 
   .code {
     counter-reset: line;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
     padding: 16px 0;
     font-family: var(--font-mono);
     font-size: 13.5px;
@@ -122,7 +123,7 @@ const lines = buildLines(DEFAULT_COLUMNS);
     margin-right: 1.1em;
     text-align: right;
     color: var(--color-text-muted);
-    opacity: 0.55;
+    opacity: 0.8;
     user-select: none;
   }
 

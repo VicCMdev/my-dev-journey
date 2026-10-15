@@ -2,18 +2,18 @@ export type Token = { cls?: string; text: string };
 export type CodeLine = { cls?: string; tokens: Token[] };
 
 const COMMENT = [
-  "A Junior Software Engineer, driven by the challenge of turning ideas into real, impactful and innovative digital products. I enjoy working on projects that push my creativity and technical skills, and I thrive in environments where I can collaborate closely with other professionals.",
-  "I'm committed to continuous learning, staying up to date with emerging development trends so I can contribute modern, efficient, and scalable solutions.",
+  "Turning ideas into real, impactful digital products.",
+  "Always learning. Always shipping.",
 ];
 
 const DEVELOPER = {
   name: "Victor Ceja",
-  role: "Frontend Developer",
-  stack: ["Javascript", "Typescript", "React", "Node.js", "Express"],
+  role: "Associate Software Engineer",
+  stack: ["JavaScript", "TypeScript", "React", "Node.js", "Express"],
 };
 
 // Columns assumed for the server render, before the client measures the real width.
-export const DEFAULT_COLUMNS = 60;
+export const DEFAULT_COLUMNS = 48;
 
 /** Greedy word wrap; words longer than `width` are split. */
 function wrap(text: string, width: number): string[] {

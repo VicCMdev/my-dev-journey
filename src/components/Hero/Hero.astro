@@ -1,0 +1,182 @@
+---
+import Feature from "@components/Feature/Feature.astro";
+import { isFlagEnabled } from "../../config/flags";
+import { profile } from "../../data/profile";
+
+const { headline } = profile;
+const contactEnabled = isFlagEnabled("contact");
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="status"><span class="pulse" aria-hidden="true"></span>{profile.availability}</p>
+      <p class="kicker"><span aria-hidden="true">$ whoami → </span>{profile.name} — {profile.role}</p>
+      <h1 id="hero-title">
+        {headline.before} <em>{headline.highlight}</em>
+        {headline.after}
+      </h1>
+      <p class="lead">{profile.lead}</p>
+
+      <div class="ctas">
+        {
+          contactEnabled ? (
+            <a class="btn btn-primary" href="/contact">
+              Let's work together <span aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <a class="btn btn-primary" href={`mailto:${profile.email}`}>
+              Let's work together <span aria-hidden="true">→</span>
+            </a>
+          )
+        }
+        <Feature feature="projects">
+          <a class="btn" href="/projects">See my work</a>
+        </Feature>
+        <a class="btn" href={profile.links.linkedin} target="_blank" rel="noopener">
+          LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <dl class="meta">
+        <div><dt class="eyebrow">Currently</dt><dd>{profile.company}</dd></div>
+        <div><dt class="eyebrow">Based in</dt><dd>{profile.location}</dd></div>
+        <div><dt class="eyebrow">Stack</dt><dd>{profile.stackSummary}</dd></div>
+      </dl>
+    </div>
+
+    <figure class="photo">
+      <img
+        src={profile.photo}
+        alt={`Portrait of ${profile.name}`}
+        width="320"
+        height="320"
+        loading="eager"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: clamp(3.5rem, 2rem + 6vw, 7rem) 0 clamp(3.5rem, 2rem + 4vw, 5.5rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: clamp(2.5rem, 1rem + 4vw, 5rem);
+    align-items: end;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+  }
+
+  .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.6);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 8px rgba(94, 234, 212, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(94, 234, 212, 0);
+    }
+  }
+
+  .kicker {
+    margin: 1.75rem 0 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .kicker span {
+    color: var(--color-accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--fs-display);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+
+  .lead {
+    max-width: 38rem;
+    margin: 1.75rem 0 0;
+    font-size: var(--fs-lead);
+    color: var(--color-text-muted);
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.75rem;
+    margin: 3.25rem 0 0;
+  }
+
+  .meta dd {
+    margin: 0.2rem 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .photo {
+    margin: 0 12px 12px 0;
+    border: 2px solid var(--color-text);
+    box-shadow: 12px 12px 0 var(--color-accent);
+    background: var(--color-bg-alt);
+  }
+
+  .photo img {
+    width: 100%;
+    aspect-ratio: 1 / 1.1;
+    object-fit: cover;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .photo {
+      order: -1;
+      width: min(200px, 55vw);
+    }
+
+    .ctas .btn {
+      flex: 1 1 auto;
+    }
+  }
+</style>

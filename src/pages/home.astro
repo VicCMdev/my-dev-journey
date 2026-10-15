@@ -1,69 +1,14 @@
 ---
 import ProfileLayout from "@layouts/ProfileLayout.astro";
+import Hero from "@components/Hero/Hero.astro";
 import About from "@components/About/About.astro";
-import CodeWindow from "@components/CodeWindow/CodeWindow.astro";
-import Feature from "@components/Feature/Feature.astro";
+import Experience from "@components/Experience/Experience.astro";
+import ContactCta from "@components/Section/ContactCta.astro";
 ---
 
 <ProfileLayout>
-    <section class="container who-am-i">
-      <h1>Hi!, I'm Victor Ceja.</h1>
-      <CodeWindow>
-        <Feature feature="projects"> <a class="button" href="projects.html">See my work</a></Feature>
-      </CodeWindow>
-    </section>
-
-    <About />
+  <Hero />
+  <About />
+  <Experience />
+  <ContactCta />
 </ProfileLayout>
-
-<style>
-  .who-am-i {
-    padding-bottom: 6rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .hero {
-    padding: 3rem 0 2rem;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero p.tagline {
-    font-size: 1.15rem;
-    color: var(--color-text-muted);
-    max-width: 40rem;
-  }
-
-  .button {
-    display: inline-block;
-    margin-left: 4.5rem;
-    margin-top: 1.5rem;
-    padding: 0.65rem 1.4rem;
-    background: var(--color-accent);
-    color: var(--color-accent-contrast);
-    border-radius: 6px;
-    font-weight: 600;
-  }
-
-
-  .button:hover {
-    text-decoration: none;
-    opacity: 0.9;
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentPath =
-      window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".site-header nav a").forEach((link) => {
-      const linkPath = link.getAttribute("href");
-      if (linkPath === currentPath) {
-        link.classList.add("active");
-      }
-    });
-  });
-</script>

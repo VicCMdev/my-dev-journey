@@ -1,0 +1,51 @@
+---
+import { isFlagEnabled } from "../../config/flags";
+import { profile } from "../../data/profile";
+import { getSectionIndex } from "../../util/sectionCounter";
+
+const href = isFlagEnabled("contact") ? "/contact" : `mailto:${profile.email}`;
+const contactIndex = getSectionIndex("contact") ?? "03";
+---
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div>
+      <p class="eyebrow"><span>// {contactIndex}</span> Next step</p>
+      <h2 id="cta-title">Have a project or a role in mind?</h2>
+      <p class="lead">Let's talk about how I can help. I usually reply within 24 hours.</p>
+    </div>
+    <a class="btn btn-primary" href={href}>Let's work together <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: clamp(4rem, 3rem + 4vw, 6rem) 0;
+    background: var(--color-bg-alt);
+    border-top: 2px solid var(--color-accent);
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .eyebrow span {
+    color: var(--color-accent);
+  }
+
+  h2 {
+    margin: 0.75rem 0 0;
+    font-size: var(--fs-h2);
+    max-width: 18ch;
+  }
+
+  .lead {
+    margin: 1rem 0 0;
+    font-size: var(--fs-lead);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import EducationCard from "@components/Cards/EducationCard.astro";
+import ExperienceCard from "@components/Cards/ExperienceCard.astro";
+import SectionHeading from "@components/Section/SectionHeading.astro";
+import { education, experience } from "../../data/profile";
+import { getSectionIndex } from "../../util/sectionCounter";
+
+const experienceIndex = getSectionIndex("experience") ?? "02";
+---
+
+<section class="experience" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+      <SectionHeading index={experienceIndex} title="Experience" id="experience-title" />
+    <div class="jobs">
+      {experience.map((item, index) => <ExperienceCard item={item} index={index} />)}
+    </div>
+
+    <div class="education" id="education">
+      <SectionHeading index="03" title="Education" id="education-title" />
+      <div class="education-grid">
+        {education.map((item) => <EducationCard item={item} />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    padding: clamp(4rem, 3rem + 4vw, 6.5rem) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .jobs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .education {
+    margin-top: clamp(4rem, 3rem + 4vw, 6rem);
+  }
+
+  .education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 1.5rem;
+  }
+</style>
