@@ -1,0 +1,58 @@
+---
+import type { Education } from "../../data/profile";
+
+interface Props {
+  item: Education;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="education-card">
+  <p class="period">{item.period}</p>
+  <h3>{item.title}</h3>
+  <p class="school">{item.school}</p>
+  <p class="summary">{item.summary}</p>
+</article>
+
+<style>
+  .education-card {
+    height: 100%;
+    padding: 1.75rem;
+    border: 2px solid var(--color-border);
+    border-top: 4px solid var(--color-accent);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .education-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .period {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  h3 {
+    margin: 0.6rem 0 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .school {
+    margin: 0.35rem 0 0;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .summary {
+    margin: 0.9rem 0 0;
+    font-size: 0.97rem;
+    color: var(--color-text-muted);
+  }
+</style>
