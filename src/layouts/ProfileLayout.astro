@@ -1,6 +1,7 @@
 ---
 import Footer from "@components/Footer/Footer.astro";
 import Header from "@components/Header/Header.astro";
+import {url} from "@util/urlFixer"
 
 interface Props {
   title?: string;
@@ -22,8 +23,8 @@ const {
     <meta name="theme-color" content="#0B1416" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <link rel="icon" href={url("/favicon.ico")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
