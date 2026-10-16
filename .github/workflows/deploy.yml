@@ -25,7 +25,7 @@ jobs:
       # Public Web3Forms access key (set it under:
       # Settings > Secrets and variables > Actions > Variables).
       # Remove this block if you hardcode the key in your component.
-      PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_FORM_KEY }}
+      PUBLIC_FORM_KEY: ${{ vars.PUBLIC_FORM_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
