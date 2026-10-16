@@ -4,6 +4,7 @@ import { isFlagEnabled } from "../../config/flags";
 import { profile } from "../../data/profile";
 import { url } from "@util/urlFixer";
 import { Image } from "astro:assets";
+import personal_image from "../../assets/personale_image.jpeg"
 const { headline } = profile;
 const contactEnabled = isFlagEnabled("contact");
 ---
@@ -48,7 +49,7 @@ const contactEnabled = isFlagEnabled("contact");
 
     <figure class="photo">
       <Image
-        src={profile.photo}
+        src={personal_image}
         alt={`Portrait of ${profile.name}`}
         width="320"
         height="320"
