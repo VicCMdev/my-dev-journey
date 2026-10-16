@@ -6,6 +6,6 @@ export default defineConfig({
   site: 'https://viccmdev.github.io',
   base: '/my-dev-journey',
   redirects: {
-    '/': '/home',
+    '/': '/my-dev-journey/home',
   },
 });
