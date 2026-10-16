@@ -14,7 +14,7 @@ export const profile = {
   location: "Mexico (CST)",
   company: "Thomson Reuters",
   stackSummary: "React · TS · Node",
-  photo: "/images/personale_image.jpeg",
+  photo: "src/assets/personale_image.jpeg",
   email: "victorceja.dev@gmail.com",
   links: {
     github: "https://github.com/VicCMdev",
