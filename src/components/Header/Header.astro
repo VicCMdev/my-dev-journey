@@ -8,19 +8,40 @@ const contactEnabled = isFlagEnabled("contact");
 const navSections = getNavSections();
 ---
 
-<header class="site-header">
+<!-- Runs before the header paints so there is no flash of the no-JS fallback -->
+<script is:inline>
+  document.documentElement.classList.add("js");
+</script>
+
+<header class="site-header" data-menu-open="false">
   <div class="container">
-    <a class="logo" href="/home" aria-label="Victor Ceja — home">
+    <a class="logo" href={url("/home")} aria-label="Victor Ceja — home">
       <span id="logo-typed" data-text="<VCM/>">&lt;VCM/&gt;</span><span
         class="logo-cursor"
         aria-hidden="true"></span>
     </a>
-    <nav aria-label="Main">
+
+    <!-- Hamburger: only visible on small screens (see media query) -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <i class="fa-solid fa-bars fa-xl icon-open" aria-hidden="true"></i>
+      <i class="fa-solid fa-xmark fa-xl icon-close" aria-hidden="true"></i>
+    </button>
+
+    <nav id="main-nav" class="main-nav" aria-label="Main">
       <ul>
         {
           navSections.map((section) => (
             <li>
-              <a href={url(section.href)} aria-current={path === section.href ? "page" : undefined}>
+              <a
+                href={url(section.href)}
+                aria-current={path === url(section.href) ? "page" : undefined}
+              >
                 <span>{`${section.index}.`}</span> {section.label}
               </a>
             </li>
@@ -29,7 +50,7 @@ const navSections = getNavSections();
       </ul>
       {
         contactEnabled && (
-          <a class="hire" href="/contact">
+          <a class="hire" href={url("/contact")}>
             Hire me
           </a>
         )
@@ -64,6 +85,8 @@ const navSections = getNavSections();
     font-size: 1.2rem;
     color: var(--color-accent);
     min-width: 6.5ch;
+    position: relative;
+    z-index: 2;
   }
 
   .logo:hover {
@@ -85,7 +108,9 @@ const navSections = getNavSections();
     }
   }
 
-  nav {
+  /* ---------- Desktop nav ---------- */
+
+  .main-nav {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -137,41 +162,168 @@ const navSections = getNavSections();
     color: var(--color-accent-contrast);
   }
 
+  /* ---------- Hamburger button ---------- */
+
+  .menu-toggle {
+    display: none; /* hidden on desktop */
+    position: relative;
+    z-index: 2;
+    width: 44px; /* 44px = minimum touch target */
+    height: 44px;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: transparent;
+    border: 2px solid var(--color-border-strong);
+    cursor: pointer;
+  }
+
+  .menu-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Both icons share the same spot, one on top of the other */
+  .menu-toggle i {
+    color: var(--color-accent);
+    position: absolute;
+    transition:
+      opacity 0.2s ease,
+      transform 0.25s ease;
+  }
+
+  /* Closed: show bars */
+  .icon-close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+
+  .icon-open {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .site-header[data-menu-open="false"] .icon-close {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  /* Open: swap to the X with a small rotation */
+  .site-header[data-menu-open="true"] .icon-open {
+    display: none;
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+  .site-header[data-menu-open="true"] .icon-close {
+    opacity: 1;
+    transform: none;
+  }
+
+
+  /* Animate the three bars into an "X" when open */
+  .site-header[data-menu-open="true"] .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .site-header[data-menu-open="true"] .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .site-header[data-menu-open="true"] .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* ---------- Mobile: collapsible panel ---------- */
+
   @media (max-width: 860px) {
-    .container {
-      flex-wrap: wrap;
-      padding-top: 0.85rem;
-      padding-bottom: 0.85rem;
+    .menu-toggle {
+      display: inline-flex;
     }
 
-    nav {
-      width: 100%;
-      justify-content: space-between;
-      gap: 1rem;
+    .main-nav {
+      position: fixed;
+      inset: 4.75rem 0 auto 0; /* sits right under the header */
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.5rem;
+      padding: 1.5rem var(--gutter) 2rem;
+      background: var(--color-bg);
+      border-bottom: 2px solid var(--color-accent);
+      box-shadow: 0 24px 40px -20px rgba(0, 0, 0, 0.7);
+
+      /* closed state */
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0s linear 0.2s;
+    }
+
+    .site-header[data-menu-open="true"] .main-nav {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0s;
     }
 
     ul {
-      gap: 1rem;
-      overflow-x: auto;
+      flex-direction: column;
+      gap: 0;
     }
 
-    ul a span {
-      display: none;
+    ul li + li {
+      border-top: 1px solid var(--color-border);
+    }
+
+    ul a {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.25rem;
+      border-bottom: 0;
+    }
+
+    ul a:hover,
+    ul a[aria-current="page"] {
+      color: var(--color-accent);
+    }
+
+    .hire {
+      text-align: center;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
     }
   }
 
-  @media (max-width: 420px) {
-    .hire {
+  /* Without JS the toggle can't work, so keep the links visible */
+  @media (max-width: 860px) {
+    :global(html:not(.js)) .menu-toggle {
       display: none;
+    }
+    :global(html:not(.js)) .main-nav {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      padding: 0 0 1rem;
+      border: 0;
+      box-shadow: none;
     }
   }
 </style>
 
 <script>
+  /* ---------- Typed logo ---------- */
   const logoTyped = document.getElementById("logo-typed");
   if (logoTyped) {
     const fullText = logoTyped.dataset.text || logoTyped.textContent || "";
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (!reduceMotion) {
       logoTyped.textContent = "";
       let i = 0;
@@ -183,5 +335,53 @@ const navSections = getNavSections();
         }
       })();
     }
+  }
+
+  /* ---------- Hamburger menu ---------- */
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  const nav = document.getElementById("main-nav");
+  const desktop = window.matchMedia("(min-width: 861px)");
+
+  if (header && toggle && nav) {
+    const setOpen = (open: boolean) => {
+      header.dataset.menuOpen = String(open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      // Prevent the page from scrolling behind the open panel
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(header.dataset.menuOpen !== "true");
+    });
+
+    // Close after choosing a link (important for #anchor links on the same page)
+    nav.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("a")) setOpen(false);
+    });
+
+    // Close with Escape and return focus to the button
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.dataset.menuOpen === "true") {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Close when clicking outside the header
+    document.addEventListener("click", (e) => {
+      if (
+        header.dataset.menuOpen === "true" &&
+        !header.contains(e.target as Node)
+      ) {
+        setOpen(false);
+      }
+    });
+
+    // Reset if the window grows to desktop size while open
+    desktop.addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
   }
 </script>
