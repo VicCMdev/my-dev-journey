@@ -29,9 +29,8 @@ const navSections = getNavSections();
       aria-expanded="false"
       aria-label="Open menu"
     >
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
+      <i class="fa-solid fa-bars fa-xl icon-open" aria-hidden="true"></i>
+      <i class="fa-solid fa-xmark fa-xl icon-close" aria-hidden="true"></i>
     </button>
 
     <nav id="main-nav" class="main-nav" aria-label="Main">
@@ -183,17 +182,45 @@ const navSections = getNavSections();
 
   .menu-toggle:hover {
     border-color: var(--color-accent);
+    color: var(--color-accent);
   }
 
-  .bar {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--color-text);
+  /* Both icons share the same spot, one on top of the other */
+  .menu-toggle i {
+    color: var(--color-accent);
+    position: absolute;
     transition:
-      transform 0.25s ease,
-      opacity 0.2s ease;
+      opacity 0.2s ease,
+      transform 0.25s ease;
   }
+
+  /* Closed: show bars */
+  .icon-close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+
+  .icon-open {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .site-header[data-menu-open="false"] .icon-close {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  /* Open: swap to the X with a small rotation */
+  .site-header[data-menu-open="true"] .icon-open {
+    display: none;
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+  .site-header[data-menu-open="true"] .icon-close {
+    opacity: 1;
+    transform: none;
+  }
+
 
   /* Animate the three bars into an "X" when open */
   .site-header[data-menu-open="true"] .bar:nth-child(1) {
@@ -294,7 +321,9 @@ const navSections = getNavSections();
   const logoTyped = document.getElementById("logo-typed");
   if (logoTyped) {
     const fullText = logoTyped.dataset.text || logoTyped.textContent || "";
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (!reduceMotion) {
       logoTyped.textContent = "";
       let i = 0;
@@ -342,7 +371,10 @@ const navSections = getNavSections();
 
     // Close when clicking outside the header
     document.addEventListener("click", (e) => {
-      if (header.dataset.menuOpen === "true" && !header.contains(e.target as Node)) {
+      if (
+        header.dataset.menuOpen === "true" &&
+        !header.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     });
