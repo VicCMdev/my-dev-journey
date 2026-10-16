@@ -9,6 +9,7 @@
       "@layouts/*": ["./src/layouts/*"],
       "@config/*": ["./src/config/*"],
       "@data/*": ["./src/data/*"],
+      "@util/*": ["./src/util/*"],
     }
   }
 }

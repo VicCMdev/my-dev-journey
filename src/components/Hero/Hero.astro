@@ -2,7 +2,8 @@
 import Feature from "@components/Feature/Feature.astro";
 import { isFlagEnabled } from "../../config/flags";
 import { profile } from "../../data/profile";
-
+import { url } from "@util/urlFixer";
+import { Image } from "astro:assets";
 const { headline } = profile;
 const contactEnabled = isFlagEnabled("contact");
 ---
@@ -31,7 +32,7 @@ const contactEnabled = isFlagEnabled("contact");
           )
         }
         <Feature feature="projects">
-          <a class="btn" href="/projects">See my work</a>
+          <a class="btn" href={url("/projects")}>See my work</a>
         </Feature>
         <a class="btn" href={profile.links.linkedin} target="_blank" rel="noopener">
           LinkedIn <span aria-hidden="true">↗</span>
@@ -46,7 +47,7 @@ const contactEnabled = isFlagEnabled("contact");
     </div>
 
     <figure class="photo">
-      <img
+      <Image
         src={profile.photo}
         alt={`Portrait of ${profile.name}`}
         width="320"

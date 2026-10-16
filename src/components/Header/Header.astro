@@ -1,6 +1,7 @@
 ---
 import { isFlagEnabled } from "../../config/flags";
 import { getNavSections } from "../../util/sectionCounter";
+import { url } from "@util/urlFixer";
 
 const path = Astro.url.pathname.replace(/\/$/, "");
 const contactEnabled = isFlagEnabled("contact");
@@ -19,7 +20,7 @@ const navSections = getNavSections();
         {
           navSections.map((section) => (
             <li>
-              <a href={section.href} aria-current={path === section.href ? "page" : undefined}>
+              <a href={url(section.href)} aria-current={path === section.href ? "page" : undefined}>
                 <span>{`${section.index}.`}</span> {section.label}
               </a>
             </li>
