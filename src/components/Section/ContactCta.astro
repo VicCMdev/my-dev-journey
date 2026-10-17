@@ -2,7 +2,7 @@
 import { isFlagEnabled } from "../../config/flags";
 import { profile } from "../../data/profile";
 import { getSectionIndex } from "../../util/sectionCounter";
-
+import { url } from "@util/urlFixer";
 const href = isFlagEnabled("contact") ? "/contact" : `mailto:${profile.email}`;
 const contactIndex = getSectionIndex("contact") ?? "03";
 ---
@@ -14,7 +14,7 @@ const contactIndex = getSectionIndex("contact") ?? "03";
       <h2 id="cta-title">Have a project or a role in mind?</h2>
       <p class="lead">Let's talk about how I can help. I usually reply within 24 hours.</p>
     </div>
-    <a class="btn btn-primary" href={href}>Let's work together <span aria-hidden="true">→</span></a>
+    <a class="btn btn-primary" href={url(href)}>Let's work together <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
