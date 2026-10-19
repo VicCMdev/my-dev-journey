@@ -46,7 +46,7 @@ export const experience: Experience[] = [
       "Own the full cycle: implementation, QA testing, debugging and peer code reviews.",
       "Collaborate across cross-functional teams while keeping code-quality standards high.",
     ],
-    stack: ["React", "TypeScript", "JavaScript", "Code Review"],
+    stack: ["React", "TypeScript", "JavaScript", "AEM", "Java", "Git", "Monorepo", "Lerna", "HTML", "CSS", "SASS", "Storybook"],
   },
   {
     role: "Software Development Intern",
@@ -66,7 +66,7 @@ export const experience: Experience[] = [
     highlights: [
       "Built a web application to manage the repair process of optical reader devices used for mail delivery in Mexico.",
     ],
-    stack: ["Laravel 9", "Vue.js 3", "Node 20", "Git", "HTML", "CSS"],
+    stack: ["Laravel 9", "Vue.js 3", "Node 20", "Git", "HTML", "CSS", "SQL"],
   },
 ];
 

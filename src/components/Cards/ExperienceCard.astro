@@ -135,11 +135,22 @@ const number = String(index + 1).padStart(2, "0");
 
   .stack {
     display: flex;
-    flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: max-content;
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
   }
 
   @media (max-width: 720px) {
