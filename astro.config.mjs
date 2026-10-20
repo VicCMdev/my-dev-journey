@@ -3,9 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://viccmdev.github.io',
-  base: '/my-dev-journey',
+  site: 'https://www.victor-ceja.com',
   redirects: {
-    '/': '/my-dev-journey/home',
+    '/': '/home',
   },
 });
